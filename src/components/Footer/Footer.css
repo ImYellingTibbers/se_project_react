@@ -1,0 +1,9 @@
+.footer {
+  display: flex;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.footer__copyright-year {
+  margin-left: auto;
+}
