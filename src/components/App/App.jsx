@@ -1,28 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
+import { coordinates, weatherAPIKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "hot" });
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: { F: 999 },
+    city: "",
+  });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleAddClick = () => {
-    setActiveModal("add-garment")
-  }
+    setActiveModal("add-garment");
+  };
+
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
 
   const closeModal = () => {
-    setActiveModal("")
-  }
+    setActiveModal("");
+  };
+
+  useEffect(() => {
+    getWeather(coordinates, weatherAPIKey)
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} />
-        <Main weatherData={weatherData} />
+        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
       <ModalWithForm
@@ -38,6 +60,7 @@ function App() {
             className="modal__input"
             id="name"
             placeholder="Name"
+            required
           />
         </label>
         <label htmlFor="imageUrl" className="modal__label">
@@ -47,6 +70,7 @@ function App() {
             className="modal__input"
             id="imageUrl"
             placeholder="Image URL"
+            required
           />
         </label>
         <fieldset className="modal__radio-btns" required>
@@ -90,6 +114,11 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        activeModal={activeModal}
+        card={selectedCard}
+        closeModal={closeModal}
+      />
     </div>
   );
 }

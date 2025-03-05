@@ -3,6 +3,10 @@ export const currentDay = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
+export const weatherAPIKey = "9c66aef131d83cd0b2d59b9b148200e7";
+
+export const coordinates = { latitude: 40.233844, longitude: -111.658534 };
+
 export const defaultClothingItems = [
   {
     _id: 0,
@@ -36,7 +40,25 @@ export const defaultClothingItems = [
   },
   {
     _id: 5,
-    name: "Coat",
+    name: "Boring Coat",
+    weather: "cold",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
+  },
+  {
+    _id: 6,
+    name: "Fancy Coat",
+    weather: "cold",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
+  },
+  {
+    _id: 7,
+    name: "Hobo Coat",
+    weather: "cold",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
+  },
+  {
+    _id: 8,
+    name: "King's Coat",
     weather: "cold",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },

@@ -1,5 +1,5 @@
 .card {
-  max-width: 323px;
+  max-width: 322px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 19px;
   position: relative;
@@ -26,4 +26,5 @@
 
 .card__image {
     width: 100%;
+    cursor: pointer;
 }

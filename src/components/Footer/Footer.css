@@ -2,8 +2,13 @@
   display: flex;
   font-weight: 500;
   font-size: 16px;
+  padding: 85px 0 24px;
+}
+
+.footer__name {
+  margin: 0;
 }
 
 .footer__copyright-year {
-  margin-left: auto;
+  margin: 0 0 0 auto;
 }

@@ -3,11 +3,11 @@ import logo from "../../assets/header-logo.svg";
 import avatar from "../../assets/user-avatar.png";
 import { currentDay } from "../../utils/constants";
 
-function Header({ handleAddClick }) {
+function Header({ handleAddClick, weatherData }) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Site logo" />
-      <p className="header__date-and-location">{currentDay}, Utah</p>
+      <p className="header__date-and-location">{currentDay}, {weatherData.city}</p>
       <button
         className="header__add-clothes-btn"
         type="button"
