@@ -1,12 +1,13 @@
-import "./Header.css"
+import "./Header.css";
 import logo from "../../assets/header-logo.svg";
 import avatar from "../../assets/user-avatar.png";
+import { currentDay } from "../../utils/constants";
 
 function Header() {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Site logo" />
-      <p className="header__date-and-location">June 15, New York</p>
+      <p className="header__date-and-location">{currentDay}, Utah</p>
       <button className="header__add-clothes-btn">+ Add Clothes</button>
       <div className="header__user-container">
         <p className="header__user_name">Terrence Tegegne</p>
