@@ -21,6 +21,7 @@
   color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
   line-height: 1.25;
+  border-radius: 4px;
 }
 
 .card__image {
