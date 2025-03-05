@@ -25,7 +25,6 @@ function Main({ weatherData, handleCardClick }) {
                 />
               );
             })}
-          <li className="card"></li>
         </ul>
       </section>
     </main>

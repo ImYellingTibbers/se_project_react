@@ -9,8 +9,10 @@ function ModalWithForm({
   title,
   activeModal,
   closeModal,
+  isOpen,
 }) {
   useEffect(() => {
+    if (!isOpen) return;
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         closeModal();
@@ -19,7 +21,7 @@ function ModalWithForm({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [closeModal]);
+  }, [isOpen, closeModal]);
 
   const handleOverlayClick = (event) => {
     if (event.target.classList.contains("modal")) {
@@ -28,7 +30,10 @@ function ModalWithForm({
   };
 
   return (
-    <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`} onClick={handleOverlayClick}>
+    <div
+      className={`modal ${isOpen && "modal_opened"}`}
+      onClick={handleOverlayClick}
+    >
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button className="modal__close-btn" type="button" onClick={closeModal}>
