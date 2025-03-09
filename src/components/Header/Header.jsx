@@ -3,11 +3,17 @@ import logo from "../../assets/header-logo.svg";
 import avatar from "../../assets/user-avatar.png";
 import { currentDay } from "../../utils/constants";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, ToggleSwitch }) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Site logo" />
-      <p className="header__date-and-location">{currentDay}, {weatherData.city}</p>
+      <p className="header__date-and-location">
+        {currentDay}, {weatherData.city}
+      </p>
+      <ToggleSwitch
+        className="header__temperature-toggle-btn"
+        onColor="#06D6A0"
+      />
       <button
         className="header__add-clothes-btn"
         type="button"

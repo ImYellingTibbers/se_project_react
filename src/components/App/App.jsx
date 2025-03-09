@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -31,6 +32,7 @@ function App() {
     setActiveModal("");
   };
 
+
   useEffect(() => {
     getWeather(coordinates, weatherAPIKey)
       .then((data) => {
@@ -43,7 +45,11 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          ToggleSwitch={ToggleSwitch}
+        />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
