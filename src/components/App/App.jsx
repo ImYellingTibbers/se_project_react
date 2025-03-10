@@ -8,6 +8,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
@@ -63,8 +64,8 @@ function App() {
           />
 
           <Routes>
-            <Route path="/se_project_react/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />} />
-            <Route path="/se_project_react/profile" element={<p>Lol</p>} />
+            <Route path="/se_project_react/" element={<Main weatherData={weatherData} onCardClick={handleCardClick} />} />
+            <Route path="/se_project_react/profile" element={<Profile onCardClick={handleCardClick}/>} />
           </Routes>
           
 
