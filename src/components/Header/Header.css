@@ -27,6 +27,11 @@
   font-weight: 700;
 }
 
+.header__link {
+  text-decoration: none;
+  color: #000;
+}
+
 .header__user_name {
   margin: 0;
 }
