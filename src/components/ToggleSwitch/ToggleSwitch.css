@@ -55,7 +55,7 @@
 }
 
 .switch__checkbox:checked ~ .switch__circle {
-  left: 28px;
+  left: 30px;
 }
 
 .switch__text_color_white {

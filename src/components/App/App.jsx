@@ -9,7 +9,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import CurrentTemperatureContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -48,7 +48,7 @@ function App() {
   }, []);
 
   return (
-    <CurrentTemperatureContext.Provider
+    <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
       <div className="page">
@@ -139,7 +139,7 @@ function App() {
           isOpen={activeModal === "preview"}
         />
       </div>
-    </CurrentTemperatureContext.Provider>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
