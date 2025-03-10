@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, weatherAPIKey } from "../../utils/constants";
@@ -14,7 +15,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 function App() {
   const [weatherData, setWeatherData] = useState({
     city: "",
-    temp: {F: 999, C: 999},
+    temp: { F: 999, C: 999 },
     type: "",
     isDay: true,
     condition: "",
@@ -60,9 +61,16 @@ function App() {
             weatherData={weatherData}
             ToggleSwitch={ToggleSwitch}
           />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+
+          <Routes>
+            <Route path="/se_project_react/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />} />
+            <Route path="/se_project_react/profile" element={<p>Lol</p>} />
+          </Routes>
+          
+
           <Footer />
         </div>
+
         <ModalWithForm
           title="New garment"
           buttonText="Add garment"
