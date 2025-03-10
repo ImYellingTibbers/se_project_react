@@ -10,10 +10,7 @@ function Header({ handleAddClick, weatherData, ToggleSwitch }) {
       <p className="header__date-and-location">
         {currentDay}, {weatherData.city}
       </p>
-      <ToggleSwitch
-        className="header__temperature-toggle-btn"
-        onColor="#06D6A0"
-      />
+      <ToggleSwitch />
       <button
         className="header__add-clothes-btn"
         type="button"
