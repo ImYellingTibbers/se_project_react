@@ -12,6 +12,8 @@
 .modal__image {
   max-width: 498px;
   border-radius: 20px 20px 0 0;
+  width: 100%;
+  object-fit: cover;
 }
 
 .modal__footer {

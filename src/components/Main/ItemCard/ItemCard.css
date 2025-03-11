@@ -1,5 +1,7 @@
 .card {
   max-width: 322px;
+  max-height: 322px;
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 19px;
   position: relative;
@@ -21,6 +23,7 @@
 }
 
 .card__image {
-    width: 100%;
-    cursor: pointer;
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
 }
