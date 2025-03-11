@@ -5,7 +5,7 @@
 }
 
 .header__logo {
-    margin-right: 24px;
+  margin-right: 24px;
 }
 
 .header__user-container {
@@ -25,6 +25,12 @@
   border: none;
   padding: 0;
   font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.1s ease-in-out;
+}
+
+.header__add-clothes-btn:hover {
+  color: rgba(0, 0, 0, 1);
 }
 
 .header__link {

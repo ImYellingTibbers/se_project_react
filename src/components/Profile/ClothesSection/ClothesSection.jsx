@@ -5,9 +5,9 @@ function ClothesSection({ onCardClick, clothingItems }) {
   return (
     <>
       <div className="clothes-section">
-        <div>
-          <p>Your items</p>
-          <button>+ Add New</button>
+        <div className="clothes-section__header">
+          <p className="clothes-section__header_text">Your items</p>
+          <button className="clothes-section__header_btn">+ Add New</button>
         </div>
         <ul className="clothes-section__list">
           {clothingItems.map((item) => {

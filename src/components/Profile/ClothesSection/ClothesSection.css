@@ -1,0 +1,36 @@
+.clothes-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 1015px;
+}
+
+.clothes-section__header {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  gap: 20px;
+}
+
+.clothes-section__header_text {
+  margin: 0;
+}
+
+.clothes-section__header_btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.1s ease-in-out;
+}
+
+.clothes-section__header_btn:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+.clothes-section__list {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
