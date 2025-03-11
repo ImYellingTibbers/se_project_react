@@ -21,6 +21,7 @@
   border: none;
   color: rgba(0, 0, 0, 0.6);
   transition: color 0.1s ease-in-out;
+  font-weight: 700;
 }
 
 .clothes-section__header_btn:hover {
