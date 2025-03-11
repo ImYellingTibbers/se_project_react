@@ -76,7 +76,7 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header
-            handleAddClick={handleAddClick}
+            onAddClick={handleAddClick}
             weatherData={weatherData}
             ToggleSwitch={ToggleSwitch}
           />
@@ -98,6 +98,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
                 />
               }
             />

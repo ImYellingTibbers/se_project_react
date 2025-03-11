@@ -8,10 +8,6 @@
   justify-content: center;
 }
 
-.card:last-child {
-    border: none;
-}
-
 .card__name {
   position: absolute;
   top: 15px;

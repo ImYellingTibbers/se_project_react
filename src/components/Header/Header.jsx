@@ -5,7 +5,7 @@ import logo from "../../assets/header-logo.svg";
 import avatar from "../../assets/user-avatar.png";
 import { currentDay } from "../../utils/constants";
 
-function Header({ handleAddClick, weatherData, ToggleSwitch }) {
+function Header({ onAddClick, weatherData, ToggleSwitch }) {
   return (
     <header className="header">
       <Link to="se_project_react/">
@@ -18,7 +18,7 @@ function Header({ handleAddClick, weatherData, ToggleSwitch }) {
       <button
         className="header__add-clothes-btn"
         type="button"
-        onClick={handleAddClick}
+        onClick={onAddClick}
       >
         + Add Clothes
       </button>
