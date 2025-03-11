@@ -1,9 +1,12 @@
 import { checkResponse } from "./constants";
 
 const baseUrl = "http://localhost:3001";
+const request = (baseUrl, options) => {
+  return fetch(baseUrl, options).then(checkResponse);
+};
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return request(`${baseUrl}/items`);
 }
 
 const ClothingData = (data) => {
@@ -15,4 +18,20 @@ const ClothingData = (data) => {
   }));
 };
 
-export { getItems, ClothingData };
+const addCard = ({ name, weather, imageUrl }) => {
+  return request(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, weather, imageUrl }),
+  });
+};
+
+const deleteCard = (id) => {
+  return request(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+  }).catch(console.error);
+};
+
+export { getItems, ClothingData, addCard, deleteCard };

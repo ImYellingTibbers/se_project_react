@@ -8,11 +8,17 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems, ClothingData } from "../../utils/clothingApi";
 import AddItemModal from "../AddItemModal/AddItemModal";
+
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import {
+  getItems,
+  ClothingData,
+  addCard,
+  deleteCard,
+} from "../../utils/clothingApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -47,8 +53,23 @@ function App() {
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     const newItem = { name, imageUrl, weather };
-    setClothingItems((prevItems) => [newItem, ...prevItems]);
-    closeModal();
+    addCard(newItem)
+      .then((savedItem) => {
+        setClothingItems((prevItems) => [savedItem, ...prevItems]);
+        closeModal();
+      })
+      .catch((err) => console.error("Error adding item: ", err));
+  };
+
+  const handleCardDelete = (id) => {
+    deleteCard(id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== id)
+        );
+        closeModal();
+      })
+      .catch((err) => console.error("Error deleting item:", err));
   };
 
   useEffect(() => {
@@ -115,6 +136,7 @@ function App() {
           card={selectedCard}
           closeModal={closeModal}
           isOpen={activeModal === "preview"}
+          onCardDelete = {handleCardDelete}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
