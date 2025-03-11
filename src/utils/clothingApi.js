@@ -11,7 +11,7 @@ const ClothingData = (data) => {
     _id: item._id,
     name: item.name,
     weather: item.weather,
-    image: item.imageUrl,
+    imageUrl: item.imageUrl,
   }));
 };
 
