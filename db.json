@@ -125,18 +125,6 @@
       "weather": "",
       "imageUrl": "https://imgs.search.brave.com/WAdMbfpEA_xPEBKf-WmPDIrQypyG9vs_mV-SKJbEaqY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFCekNiUjJBRkwu/anBn",
       "_id": 20
-    },
-    {
-      "name": "fds",
-      "weather": "cold",
-      "imageUrl": "https://imgs.search.brave.com/WAdMbfpEA_xPEBKf-WmPDIrQypyG9vs_mV-SKJbEaqY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFCekNiUjJBRkwu/anBn",
-      "_id": 21
-    },
-    {
-      "name": "fdsafds",
-      "weather": "cold",
-      "imageUrl": "https://imgs.search.brave.com/eEqMzvkI-iTaR9K5ojzpW1uhI80Tjfo3hVfxOEZbrKQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzczLzY1/L2Q3LzczNjVkN2M5/ZjZhYjBmZjA3YjQ0/Y2MzMTYzY2ZlNjNl/LmpwZw",
-      "_id": 22
     }
   ]
 }

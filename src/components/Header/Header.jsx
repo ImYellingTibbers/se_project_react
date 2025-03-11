@@ -8,6 +8,8 @@ import { currentDay } from "../../utils/constants";
 function Header({ onAddClick, weatherData, ToggleSwitch }) {
   return (
     <header className="header">
+      <Link to="/"></Link>
+      <Link to="/profile"></Link>
       <Link to="/se_project_react/">
         <img className="header__logo" src={logo} alt="Site logo" />
       </Link>
