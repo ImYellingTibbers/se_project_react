@@ -9,15 +9,6 @@ function getItems() {
   return request(`${baseUrl}/items`);
 }
 
-const ClothingData = (data) => {
-  return data.map((item) => ({
-    _id: item._id,
-    name: item.name,
-    weather: item.weather,
-    imageUrl: item.imageUrl,
-  }));
-};
-
 const addCard = ({ name, weather, imageUrl }) => {
   return request(`${baseUrl}/items`, {
     method: "POST",
@@ -31,7 +22,7 @@ const addCard = ({ name, weather, imageUrl }) => {
 const deleteCard = (id) => {
   return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-  }).catch(console.error);
+  });
 };
 
-export { getItems, ClothingData, addCard, deleteCard };
+export { getItems, addCard, deleteCard };

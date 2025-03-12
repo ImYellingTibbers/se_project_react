@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -11,12 +11,22 @@ function AddItemModal({ activeModal, closeModal, onAddItemModalSubmit }) {
   const handleUrlChange = (e) => setImageUrl(e.target.value);
   const handleWeatherChange = (e) => setWeather(e.target.value);
 
+  useEffect(() => {
+    if (activeModal === "add-garment") {
+      setName("");
+      setImageUrl("");
+      setWeather("");
+    }
+  }, [activeModal]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItemModalSubmit({ name, imageUrl, weather });
-    setName("");
-    setImageUrl("");
-    setWeather("");
+
+    onAddItemModalSubmit({ name, imageUrl, weather })
+      .then(() => {
+        closeModal();
+      })
+      .catch(console.error);
   };
 
   return (

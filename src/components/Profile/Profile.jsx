@@ -4,20 +4,18 @@ import "./Profile.css";
 
 function Profile({ onCardClick, clothingItems, onAddClick }) {
   return (
-    <>
-      <div className="profile">
-        <section className="profile__sidebar">
-          <SideBar />
-        </section>
-        <section className="profile__clothing-items">
-          <ClothesSection
-            onCardClick={onCardClick}
-            clothingItems={clothingItems}
-            onAddClick={onAddClick}
-          />
-        </section>
-      </div>
-    </>
+    <div className="profile">
+      <section className="profile__sidebar">
+        <SideBar />
+      </section>
+      <section className="profile__clothing-items">
+        <ClothesSection
+          onCardClick={onCardClick}
+          clothingItems={clothingItems}
+          onAddClick={onAddClick}
+        />
+      </section>
+    </div>
   );
 }
 

@@ -13,12 +13,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import {
-  getItems,
-  ClothingData,
-  addCard,
-  deleteCard,
-} from "../../utils/clothingApi";
+import { getItems, addCard, deleteCard } from "../../utils/clothingApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -84,8 +79,14 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        const filteredData = ClothingData(data);
-        setClothingItems(filteredData);
+        return setClothingItems(
+          data.map((item) => ({
+            _id: item._id,
+            name: item.name,
+            weather: item.weather,
+            imageUrl: item.imageUrl,
+          }))
+        );
       })
       .catch(console.error);
   }, []);
@@ -136,7 +137,7 @@ function App() {
           card={selectedCard}
           closeModal={closeModal}
           isOpen={activeModal === "preview"}
-          onCardDelete = {handleCardDelete}
+          onCardDelete={handleCardDelete}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
