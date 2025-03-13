@@ -23,10 +23,6 @@ function AddItemModal({ activeModal, closeModal, onAddItemModalSubmit }) {
     e.preventDefault();
 
     onAddItemModalSubmit({ name, imageUrl, weather })
-      .then(() => {
-        closeModal();
-      })
-      .catch(console.error);
   };
 
   return (

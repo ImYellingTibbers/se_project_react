@@ -125,6 +125,12 @@
       "weather": "",
       "imageUrl": "https://imgs.search.brave.com/WAdMbfpEA_xPEBKf-WmPDIrQypyG9vs_mV-SKJbEaqY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFCekNiUjJBRkwu/anBn",
       "_id": 20
+    },
+    {
+      "name": "Jacob Pixton",
+      "weather": "cold",
+      "imageUrl": "https://imgs.search.brave.com/nkrPjFocCt0Ru3a4_D0RBvyrMW1KphHISzZ8p_8K9KQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFCekNiUjJBRkwu/anBn",
+      "_id": 21
     }
   ]
 }
