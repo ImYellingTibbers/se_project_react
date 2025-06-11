@@ -11,6 +11,8 @@ import Profile from "../Profile/Profile";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addCard, deleteCard } from "../../utils/clothingApi";
@@ -28,6 +30,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -46,6 +50,10 @@ function App() {
     setActiveModal("");
   };
 
+  const switchModal = (target) => {
+    setActiveModal(target);
+  };
+
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     const newItem = { name, imageUrl, weather };
     addCard(newItem)
@@ -54,6 +62,35 @@ function App() {
         closeModal();
       })
       .catch((err) => console.error("Error adding item: ", err));
+  };
+
+  const handleRegister = ({ name, avatar, email, password }) => {
+    register({ name, avatar, email, password })
+      .then((res) => {
+        console.log("Registration successful:", res);
+        closeModal();
+      })
+      .catch((err) => {
+        console.error("Registration error:", err);
+      });
+  };
+
+  const handleLogin = ({ email, password }) => {
+    authorize({ email, password })
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+
+          return checkToken(res.token).then((userData) => {
+            setCurrentUser(userData);
+            closeModal();
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Login error:", err);
+      });
   };
 
   const handleCardDelete = (id) => {
@@ -89,6 +126,21 @@ function App() {
         );
       })
       .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      checkToken(token)
+        .then((userData) => {
+          setCurrentUser(userData);
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.error("Token check failed:", err);
+          setIsLoggedIn(false);
+        });
+    }
   }, []);
 
   return (
@@ -132,6 +184,18 @@ function App() {
           activeModal={activeModal}
           closeModal={closeModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          closeModal={closeModal}
+          onRegister={handleRegister}
+          switchModal={switchModal}
+        />
+        <LoginModal
+          activeModal={activeModal}
+          closeModal={closeModal}
+          onLogin={handleLogin}
+          switchModal={switchModal}
         />
         <ItemModal
           card={selectedCard}

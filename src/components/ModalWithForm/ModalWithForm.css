@@ -18,7 +18,7 @@
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.3s ease-in-out
+  transition: opacity 0.3s ease-in-out;
 }
 
 .modal__content {
@@ -83,11 +83,18 @@
 }
 
 .modal__label_type_radio:has(.modal__radio-input:checked) {
-    opacity: 1;
-  }
+  opacity: 1;
+}
+
+.modal__btns {
+  font-size: 16px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 .modal__submit-btn {
-  margin-top: 32px;
   max-width: 124px;
   width: 100%;
   padding: 8px 0;
@@ -101,4 +108,24 @@
 
 .modal__submit-btn:hover {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__alt {
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 14px;
+}
+
+.modal__alt-link {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+.modal__alt-link:hover {
+  text-decoration: underline;
 }

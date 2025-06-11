@@ -10,6 +10,7 @@ function ModalWithForm({
   closeModal,
   isOpen,
   onSubmit,
+  switchModal,
 }) {
   useEffect(() => {
     if (!isOpen) return;
@@ -41,9 +42,27 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} action="" className="modal__form">
           {children}
-          <button type="submit" className="modal__submit-btn">
-            {buttonText}
-          </button>
+          <div className="modal__btns">
+            <button type="submit" className="modal__submit-btn">
+              {buttonText}
+            </button>
+            {(title === "Sign Up" || title === "Log in") && (
+              <p className="modal__alt">
+                or
+                <button
+                  type="button"
+                  className="modal__alt-link"
+                  onClick={() =>
+                    title === "Sign Up"
+                      ? switchModal("login")
+                      : switchModal("register")
+                  }
+                >
+                  {title === "Sign Up" ? "Log in" : "Register"}
+                </button>
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </div>
