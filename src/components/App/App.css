@@ -12,3 +12,12 @@
   margin: 0 auto;
   padding: 0 40px;
 }
+
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  color: #444;
+}

@@ -13,14 +13,16 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addCard, deleteCard } from "../../utils/clothingApi";
+import { register, authorize, checkToken } from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     city: "",
-    temp: { F: 999, C: 888 },
+    temp: { F: "", C: "" },
     type: "",
     isDay: true,
     condition: "",
@@ -31,7 +33,8 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -55,8 +58,9 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
+    const token = localStorage.getItem("jwt");
     const newItem = { name, imageUrl, weather };
-    addCard(newItem)
+    addCard(newItem, token)
       .then((savedItem) => {
         setClothingItems((prevItems) => [savedItem, ...prevItems]);
         closeModal();
@@ -93,8 +97,15 @@ function App() {
       });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+  };
+
   const handleCardDelete = (id) => {
-    deleteCard(id)
+    const token = localStorage.getItem("jwt");
+    deleteCard(id, token)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== id)
@@ -137,11 +148,18 @@ function App() {
           setIsLoggedIn(true);
         })
         .catch((err) => {
-          console.error("Token check failed:", err);
           setIsLoggedIn(false);
-        });
+          localStorage.removeItem("jwt");
+        })
+        .finally(() => setIsAuthChecked(true));
+    } else {
+      setIsAuthChecked(true);
     }
   }, []);
+
+  if (!isAuthChecked) {
+    return <div className="loader">Loading...</div>;
+  }
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -169,7 +187,9 @@ function App() {
             <Route
               path="/se_project_react/profile"
               element={
-                <Profile
+                <ProtectedRoute
+                  element={Profile}
+                  isLoggedIn={isLoggedIn}
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   onAddClick={handleAddClick}
