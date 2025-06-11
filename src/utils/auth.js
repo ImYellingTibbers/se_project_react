@@ -2,7 +2,7 @@ import { checkResponse } from "./constants";
 
 const baseUrl = "http://localhost:3001";
 
-export const register = ({ name, avatar, email, password }) => {
+const register = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -12,7 +12,7 @@ export const register = ({ name, avatar, email, password }) => {
   }).then(checkResponse);
 };
 
-export const authorize = ({ email, password }) => {
+const authorize = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
@@ -22,7 +22,7 @@ export const authorize = ({ email, password }) => {
   }).then(checkResponse);
 };
 
-export const checkToken = (token) => {
+const checkToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -31,3 +31,16 @@ export const checkToken = (token) => {
     },
   }).then(checkResponse);
 };
+
+const editProfile = ({ name, avatar }, token) => {
+  return fetch("http://localhost:3001/users/me", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+};
+
+export { register, authorize, checkToken, editProfile };

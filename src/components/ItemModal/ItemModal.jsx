@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 import "../ModalWithForm/ModalWithForm.css";
 import "./ItemModal.css";
 import modalCloseX from "../../assets/modal-close-x-white.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ card, closeModal, isOpen, onCardDelete }) {
+  const currentUser = useContext(CurrentUserContext);
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e) => {
@@ -23,6 +26,8 @@ function ItemModal({ card, closeModal, isOpen, onCardDelete }) {
     }
   };
 
+  const isOwn = card?.owner === currentUser?._id;
+
   return (
     <div
       className={`modal ${isOpen && "modal_opened"}`}
@@ -36,12 +41,14 @@ function ItemModal({ card, closeModal, isOpen, onCardDelete }) {
         <div className="modal__footer">
           <div className="modal__footer_container">
             <h2 className="modal__caption">{card.name}</h2>
-            <button
-              className="modal__delete-btn"
-              onClick={() => onCardDelete(card._id)}
-            >
-              Delete item
-            </button>
+            {isOwn && (
+              <button
+                className="modal__delete-btn"
+                onClick={() => onCardDelete(card._id)}
+              >
+                Delete item
+              </button>
+            )}
           </div>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>

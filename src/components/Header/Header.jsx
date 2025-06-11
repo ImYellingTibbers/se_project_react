@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 import "./Header.css";
 import logo from "../../assets/header-logo.svg";
 import avatar from "../../assets/user-avatar.png";
 import { currentDay } from "../../utils/constants";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({ onAddClick, weatherData, ToggleSwitch }) {
+  const currentUser = useContext(CurrentUserContext);
+  const userInitial = currentUser?.name?.[0] || "?";
+
   return (
     <header className="header">
-      <Link to="/"></Link>
-      <Link to="/profile"></Link>
       <Link to="/se_project_react/">
         <img className="header__logo" src={logo} alt="Site logo" />
       </Link>
@@ -26,8 +29,18 @@ function Header({ onAddClick, weatherData, ToggleSwitch }) {
       </button>
       <Link className="header__link" to="/se_project_react/profile">
         <div className="header__user-container">
-          <p className="header__user_name">Terrence Tegegne</p>
-          <img className="header__user_avatar" src={avatar} alt="User avatar" />
+          <p className="header__user_name">{currentUser?.name || "Guest"}</p>
+          {currentUser?.avatar ? (
+            <img
+              className="header__user_avatar"
+              src={currentUser.avatar}
+              alt="User avatar"
+            />
+          ) : (
+            <div className="header__user_avatar header__user_avatar--placeholder">
+              {userInitial}
+            </div>
+          )}
         </div>
       </Link>
     </header>
