@@ -129,3 +129,15 @@
 .modal__alt-link:hover {
   text-decoration: underline;
 }
+
+.modal__error-message {
+  display: block;
+  color: rgba(255, 77, 0, 1);
+  font-size: 16px;
+  padding-bottom: 6px;
+}
+
+.modal__input_error {
+  border-bottom: 1px solid #ff4d4f;
+  color: rgba(255, 77, 0, 1);
+}

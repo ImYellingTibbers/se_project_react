@@ -22,7 +22,7 @@ function AddItemModal({ activeModal, closeModal, onAddItemModalSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAddItemModalSubmit({ name, imageUrl, weather })
+    onAddItemModalSubmit({ name, imageUrl, weather });
   };
 
   return (
@@ -34,7 +34,7 @@ function AddItemModal({ activeModal, closeModal, onAddItemModalSubmit }) {
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
-        Name{" "}
+        Name
         <input
           type="text"
           className="modal__input"
@@ -48,7 +48,7 @@ function AddItemModal({ activeModal, closeModal, onAddItemModalSubmit }) {
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
-        Image{" "}
+        Image
         <input
           type="url"
           className="modal__input"

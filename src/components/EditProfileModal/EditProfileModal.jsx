@@ -23,18 +23,20 @@ function EditProfileModal({ activeModal, closeModal, onEditProfile }) {
 
   return (
     <ModalWithForm
-      title="Edit Profile"
+      title="Change profile data"
       name="edit-profile"
-      buttonText="Save"
-      activeModal={activeModal}
+      buttonText="Save changes"
+      isOpen={activeModal === "edit-profile"}
       closeModal={closeModal}
       onSubmit={handleSubmit}
     >
-      <label>
-        Name
+      <label htmlFor="name" className="modal__label">
+        Name*
         <input
           type="text"
           name="name"
+          id="name"
+          className="modal__input"
           minLength="1"
           maxLength="30"
           required
@@ -42,11 +44,13 @@ function EditProfileModal({ activeModal, closeModal, onEditProfile }) {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>
-        Avatar URL
+      <label htmlFor="avatar" className="modal__label">
+        Avatar
         <input
           type="url"
           name="avatar"
+          id="avatar"
+          className="modal__input"
           required
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}

@@ -18,7 +18,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addCard, deleteCard } from "../../utils/clothingApi";
-import { register, authorize, checkToken } from "../../utils/auth";
+import { register, authorize, checkToken, editProfile } from "../../utils/auth";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -74,14 +74,24 @@ function App() {
     register({ name, avatar, email, password })
       .then((res) => {
         console.log("Registration successful:", res);
-        closeModal();
+        return authorize({ email, password });
+      })
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          return checkToken(res.token).then((userData) => {
+            setCurrentUser(userData);
+            closeModal();
+          });
+        }
       })
       .catch((err) => {
-        console.error("Registration error:", err);
+        console.error("Registration/Login error:", err);
       });
   };
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, setErrorMessage) => {
     authorize({ email, password })
       .then((res) => {
         if (res.token) {
@@ -96,13 +106,16 @@ function App() {
       })
       .catch((err) => {
         console.error("Login error:", err);
+        setErrorMessage("Invalid email or password");
       });
   };
 
   const handleLogout = () => {
+    console.log("logging out...");
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
+    setActiveModal("");
   };
 
   const handleCardDelete = (id) => {
@@ -129,7 +142,7 @@ function App() {
         closeModal();
       })
       .catch((err) => console.error("Error updating profile:", err));
-  };  
+  };
 
   useEffect(() => {
     getWeather(coordinates, weatherAPIKey)
@@ -149,6 +162,7 @@ function App() {
             name: item.name,
             weather: item.weather,
             imageUrl: item.imageUrl,
+            owner: item.owner,
           }))
         );
       })
@@ -188,6 +202,9 @@ function App() {
               onAddClick={handleAddClick}
               weatherData={weatherData}
               ToggleSwitch={ToggleSwitch}
+              isLoggedIn={isLoggedIn}
+              openLoginModal={() => setActiveModal("login")}
+              openRegisterModal={() => setActiveModal("register")}
             />
 
             <Routes>
@@ -211,6 +228,7 @@ function App() {
                     clothingItems={clothingItems}
                     onAddClick={handleAddClick}
                     onEditProfile={handleEditProfileClick}
+                    onLogout={handleLogout}
                   />
                 }
               />
