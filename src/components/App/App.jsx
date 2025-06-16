@@ -17,7 +17,7 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, addCard, deleteCard } from "../../utils/clothingApi";
+import { getItems, addCard, deleteCard, addCardLike, removeCardLike } from "../../utils/clothingApi";
 import { register, authorize, checkToken, editProfile } from "../../utils/auth";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -130,6 +130,21 @@ function App() {
       .catch((err) => console.error("Error deleting item:", err));
   };
 
+  const handleCardLike = (item) => {
+    const token = localStorage.getItem("jwt");
+    const isLiked = item.likes?.includes(currentUser._id);
+  
+    const likeAction = isLiked ? removeCardLike : addCardLike;
+  
+    likeAction(item._id, token)
+      .then((updatedCard) => {
+        setClothingItems((prevItems) =>
+          prevItems.map((card) => (card._id === item._id ? updatedCard : card))
+        );
+      })
+      .catch((err) => console.error("Error toggling like:", err));
+  };
+
   const handleEditProfileClick = () => {
     setActiveModal("edit-profile");
   };
@@ -215,6 +230,7 @@ function App() {
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -228,6 +244,7 @@ function App() {
                     clothingItems={clothingItems}
                     onAddClick={handleAddClick}
                     onEditProfile={handleEditProfileClick}
+                    onCardLike={handleCardLike}
                     onLogout={handleLogout}
                   />
                 }

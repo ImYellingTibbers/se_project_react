@@ -6,6 +6,13 @@ const request = (url, options) => {
   return fetch(url, options).then(checkResponse);
 };
 
+const handleServerResponse = (res) => {
+  if (!res.ok) {
+    return res.json().then((err) => Promise.reject(err));
+  }
+  return res.json();
+};
+
 function getItems() {
   return request(`${baseUrl}/items`);
 }
@@ -30,4 +37,24 @@ const deleteCard = (id, token) => {
   });
 };
 
-export { getItems, addCard, deleteCard };
+const addCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+
+const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+
+export { getItems, addCard, deleteCard, addCardLike, removeCardLike };

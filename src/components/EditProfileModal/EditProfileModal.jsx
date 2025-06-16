@@ -30,12 +30,12 @@ function EditProfileModal({ activeModal, closeModal, onEditProfile }) {
       closeModal={closeModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="update-name" className="modal__label">
         Name*
         <input
           type="text"
           name="name"
-          id="name"
+          id="update-name"
           className="modal__input"
           minLength="1"
           maxLength="30"
@@ -44,11 +44,11 @@ function EditProfileModal({ activeModal, closeModal, onEditProfile }) {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="update-avatar" className="modal__label">
         Avatar
         <input
           type="url"
-          name="avatar"
+          name="update-avatar"
           id="avatar"
           className="modal__input"
           required
