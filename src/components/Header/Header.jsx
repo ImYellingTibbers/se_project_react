@@ -19,6 +19,10 @@ function Header({
 
   return (
     <header className="header">
+      <Link to="/">
+      </Link>
+      <Link to="/profile">
+      </Link>
       <Link to="/se_project_react/">
         <img className="header__logo" src={logo} alt="Site logo" />
       </Link>
