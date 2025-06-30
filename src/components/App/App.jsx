@@ -115,7 +115,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
-    setActiveModal("");
+    closeModal();
   };
 
   const handleCardDelete = (id) => {
@@ -178,6 +178,7 @@ function App() {
             weather: item.weather,
             imageUrl: item.imageUrl,
             owner: item.owner,
+            likes: item.likes,
           }))
         );
       })

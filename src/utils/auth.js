@@ -33,7 +33,7 @@ const checkToken = (token) => {
 };
 
 const editProfile = ({ name, avatar }, token) => {
-  return fetch("http://localhost:3001/users/me", {
+  return fetch(baseUrl, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

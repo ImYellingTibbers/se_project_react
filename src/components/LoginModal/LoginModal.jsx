@@ -34,24 +34,24 @@ function LoginModal({ activeModal, closeModal, onLogin, switchModal }) {
       {errorMessage && (
         <span className="modal__error-message">{errorMessage}</span>
       )}
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email
         <input
           type="email"
           className={`modal__input ${errorMessage ? "modal__input_error" : ""}`}
-          id="email"
+          id="login-email"
           placeholder="Email"
           required
           value={email}
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password
         <input
           type="password"
           className={`modal__input ${errorMessage ? "modal__input_error" : ""}`}
-          id="password"
+          id="login-password"
           placeholder="Password"
           required
           value={password}

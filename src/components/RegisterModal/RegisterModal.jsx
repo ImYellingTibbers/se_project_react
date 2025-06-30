@@ -30,36 +30,36 @@ function RegisterModal({ activeModal, closeModal, onRegister, switchModal }) {
       onSubmit={handleSubmit}
       switchModal={switchModal}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email*
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           placeholder="Email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password*
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="register-password"
           placeholder="Password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name*
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="register-name"
           placeholder="Name"
           required
           minLength="2"
@@ -68,12 +68,12 @@ function RegisterModal({ activeModal, closeModal, onRegister, switchModal }) {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar URL*
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="register-avatar"
           placeholder="Avatar URL"
           required
           value={avatar}

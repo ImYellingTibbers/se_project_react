@@ -49,7 +49,7 @@ function EditProfileModal({ activeModal, closeModal, onEditProfile }) {
         <input
           type="url"
           name="update-avatar"
-          id="avatar"
+          id="update-avatar"
           className="modal__input"
           required
           value={avatar}
