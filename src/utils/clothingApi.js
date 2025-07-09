@@ -1,6 +1,4 @@
-import { checkResponse } from "./constants";
-
-const baseUrl = "http://localhost:3001";
+import { checkResponse, baseUrl } from "./constants";
 
 const request = (url, options) => {
   return fetch(url, options).then(checkResponse);
