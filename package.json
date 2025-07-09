@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* jacobcpix@wtwr.cylone.net:/home/jacobcpix/wtwr-frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
